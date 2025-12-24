@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payments</title>
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+
+<h2>Payments</h2>
+<p><strong>Total Revenue:</strong> ₦{{ total_revenue }}</p>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Student</th>
+        <th>Email</th>
+        <th>Amount</th>
+        <th>Reference</th>
+        <th>Receipt</th>
+        <th>Date</th>
+    </tr>
+
+    {% for p in payments %}
+    <tr>
+        <td>{{ p.user.fullname }}</td>
+        <td>{{ p.user.email }}</td>
+        <td>₦{{ p.amount }}</td>
+        <td>{{ p.reference }}</td>
+        <td>
+            <a href="{{ url_for('download_receipt', filename=p.receipt) }}">
+                PDF
+            </a>
+        </td>
+        <td>{{ p.created_at.strftime("%Y-%m-%d") }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

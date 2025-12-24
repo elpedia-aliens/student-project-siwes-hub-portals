@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SIWES Hub{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">SIWES HUB</div>
+    <ul>
+        <li><a href="/">Home</a></li>
+
+        {% if current_user.is_authenticated %}
+            <li><a href="/submit">Submit</a></li>
+            <li><a href="/track">Track</a></li>
+
+            {% if current_user.role == "admin" %}
+                <li><a href="/admin">Admin</a></li>
+            {% endif %}
+
+            <li><a href="/logout">Logout</a></li>
+        {% else %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">
+                {% for msg in messages %}
+                    <p>{{ msg }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    <p>© {{ 2025 }} SIWES Hub</p>
+</footer>
+
+</body>
+</html>

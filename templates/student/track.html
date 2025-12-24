@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Submissions</title>
+</head>
+<body>
+
+<h2>My Submissions</h2>
+
+<table border="1">
+<tr>
+    <th>Service</th>
+    <th>Status</th>
+    <th>Receipt</th>
+</tr>
+
+{% for s in subs %}
+<tr>
+    <td>{{ s.service }}</td>
+    <td>{{ s.status }}</td>
+    <td>
+        {% if s.receipt %}
+            <a href="{{ url_for('download', name=s.receipt) }}">Download PDF</a>
+        {% else %}
+            -
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>

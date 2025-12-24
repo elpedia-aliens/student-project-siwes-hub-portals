@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SIWES Hub{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+{% extends "base.html" %}
+{% block title %}Students{% endblock %}
+
+{% block content %}
+<h2>Registered Students</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+
+    {% for s in students %}
+    <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.fullname }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.role }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+</body>
+</html>

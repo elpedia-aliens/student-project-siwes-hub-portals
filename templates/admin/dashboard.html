@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<div class="stats">
+    <div class="card">Students<br><b>{{ total_students }}</b></div>
+    <div class="card">Payments<br><b>{{ total_payments }}</b></div>
+    <div class="card">Revenue<br><b>₦{{ total_revenue }}</b></div>
+</div>
+
+<canvas id="revenueChart" width="400" height="150"></canvas>
+
+<script>
+const ctx = document.getElementById('revenueChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [{
+            label: 'Monthly Revenue',
+            data: [12000, 19000, 30000, 50000, 40000, 60000],
+            backgroundColor: '#2563eb'
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

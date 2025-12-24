@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+Werkzeug
+requests
+reportlab
+twilio
+gunicorn
+psycopg2-binary
